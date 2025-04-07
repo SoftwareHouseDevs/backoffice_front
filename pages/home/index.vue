@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1>Hello World</h1>
-  </div>
+    <UButton>Click me</UButton>
+</div>
 </template>
 
 <script setup lang="ts">
