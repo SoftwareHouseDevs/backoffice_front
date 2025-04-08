@@ -1,37 +1,80 @@
 <template>
-  <div class="flex h-screen bg-gray-100 dark:bg-gray-900">
-    <!-- Sidebar -->
-    <aside class="w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 flex flex-col">
-      <div class="h-16 flex items-center justify-center text-xl font-bold border-b border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white">
-        Admin Panel
+  <div class="flex h-screen">
+    <!-- Responsive Sidebar -->
+    <aside
+      class="w-64 border-r border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 flex flex-col flex-shrink-0
+             fixed inset-y-0 left-0 z-50 transform transition-transform duration-300 ease-in-out lg:relative lg:translate-x-0"
+      :class="{ '-translate-x-full': !isSidebarOpen }"
+    >
+       <!-- Sidebar Header -->
+       <div class="h-16 flex items-center justify-center shrink-0">
+        <span class="text-xl font-bold text-gray-900 dark:text-white">Admin Panel</span>
       </div>
-      <UVerticalNavigation :links="links" class="flex-1 px-4 py-4" />
-      <!-- Optional: Add footer/logout in sidebar -->
+
+      <!-- Navigation Links -->
+      <nav class="flex-1 overflow-y-auto px-4 py-4">
+        <ul>
+          <li v-for="link in links" :key="link.id">
+            <NuxtLink
+              :to="link.to"
+              class="flex items-center px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
+              active-class="bg-gray-100 dark:bg-gray-800 text-primary-500 dark:text-primary-400"
+              @click="isSidebarOpen = false"
+            >
+               <UIcon v-if="link.icon" :name="link.icon" class="h-5 w-5 mr-3" />
+              <span class="truncate">{{ link.label }}</span>
+            </NuxtLink>
+          </li>
+        </ul>
+      </nav>
+
+       <!-- Optional Footer -->
+       <!-- <div class="p-4 border-t border-gray-200 dark:border-gray-700">
+         <button>Logout</button>
+       </div> -->
     </aside>
+    <!-- End Responsive Sidebar -->
 
-    <!-- Main content -->
+    <!-- Sidebar Overlay (Mobile) -->
+    <div
+      v-if="isSidebarOpen"
+      class="fixed inset-0 bg-black/50 z-40 lg:hidden"
+      @click="isSidebarOpen = false"
+    />
+
+    <!-- Main Content Panel -->
     <div class="flex-1 flex flex-col overflow-hidden">
-      <!-- Topbar -->
-      <header class="h-16 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between px-6">
-        <div>
-          <!-- Page Title (could be dynamic) -->
-          <h1 class="text-xl font-semibold text-gray-800 dark:text-gray-100">Dashboard</h1>
-        </div>
-        <div>
-          <!-- User profile/logout Button -->
-           <UButton
-            icon="i-heroicons-user-circle"
-            size="sm"
-            color="primary"
-            square
-            variant="ghost"
-          />
-        </div>
-      </header>
+      <!-- Navbar -->
+      <nav class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 h-16 flex items-center px-4">
+        <!-- Left side -->
+        <div class="flex items-center">
+          <!-- Hamburger Menu Button (only visible on mobile) -->
+          <button
+            class="lg:hidden text-gray-500 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300 focus:outline-none"
+            @click="isSidebarOpen = true"
+          >
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
 
-      <!-- Page Content -->
-      <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 dark:bg-gray-900 p-6">
-        <!-- Your dashboard content goes here -->
+          <!-- Page Title -->
+          <h1 class="ml-4 text-xl font-semibold text-gray-800 dark:text-gray-100">Dashboard</h1>
+        </div>
+
+        <!-- Right side -->
+        <div class="ml-auto">
+          <button class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
+            <svg class="h-6 w-6 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Main Page Content -->
+      <div class="flex-1 overflow-y-auto p-6 bg-gray-100 dark:bg-gray-800">
+          <!-- Your dashboard content goes here -->
         <UCard>
           <template #header>
              <h2 class="text-lg font-medium text-gray-900 dark:text-white">Welcome to your Dashboard!</h2>
@@ -54,29 +97,36 @@
           </UCard>
           <!-- Add more UCard components -->
         </div>
-      </main>
+      </div>
     </div>
+    <!-- End Main Content Area -->
+
   </div>
 </template>
 
 <script setup lang="ts">
 const links = [
   {
+    id: 'home', // Required for v3
     label: 'Dashboard',
-    icon: 'i-heroicons-home',
-    to: '/dashboard' // Use NuxtLink's 'to' prop
+    icon: 'i-heroicons-home', // Temporarily removed
+    to: '/dashboard'
   },
   {
+    id: 'users', // Required for v3
     label: 'Users',
-    icon: 'i-heroicons-users',
+    icon: 'i-heroicons-users', // Temporarily removed
     to: '/users' // Example route
   },
   {
+    id: 'settings', // Required for v3
     label: 'Settings',
-    icon: 'i-heroicons-cog',
+    icon: 'i-heroicons-cog', // Temporarily removed
     to: '/settings' // Example route
   }
 ]
+
+const isSidebarOpen = ref(false)
 
 // You might need to add logic here later, e.g., fetching data
 // Or define page meta for layout if using Nuxt layouts explicitly
