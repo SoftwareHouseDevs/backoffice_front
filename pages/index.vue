@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
 const email = ref('')
 const password = ref('')
@@ -6,13 +7,22 @@ const loading = ref(false)
 
 const handleLogin = async () => {
   loading.value = true
+  const isAuthenticated = useState<boolean>('isAuthenticated')
+
   try {
     // TODO: Implement login logic here
     console.log('Login attempt with:', { email: email.value, password: password.value })
-    // Simulate API call
+    // Simulate API call & successful login
     await new Promise(resolve => setTimeout(resolve, 1000))
+
+    // ** On successful login **
+    isAuthenticated.value = true // Set authentication state
+    await navigateTo('/dashboard') // Redirect to dashboard
+
   } catch (error) {
     console.error('Login failed:', error)
+    isAuthenticated.value = false // Ensure state is false on failure
+    // TODO: Show error message to the user
   } finally {
     loading.value = false
   }
