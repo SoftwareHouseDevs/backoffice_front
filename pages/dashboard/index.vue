@@ -13,15 +13,15 @@
 
       <!-- Navigation Links -->
       <nav class="flex-1 overflow-y-auto px-4 py-4">
-        <ul>
-          <li v-for="link in links" :key="link.id">
+        <ul class="space-y-2">
+          <li v-for="link in links" :key="link.id" class="mb-1">
             <NuxtLink
               :to="link.to"
-              class="flex items-center px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
+              class="flex items-center px-3 py-3 rounded-md text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
               active-class="bg-gray-100 dark:bg-gray-800 text-primary-500 dark:text-primary-400"
               @click="isSidebarOpen = false"
             >
-               <UIcon v-if="link.icon" :name="link.icon" class="h-5 w-5 mr-3" />
+              <UIcon v-if="link.icon" :name="link.icon" class="h-5 w-5 mr-3" />
               <span class="truncate">{{ link.label }}</span>
             </NuxtLink>
           </li>
@@ -29,9 +29,9 @@
       </nav>
 
       <!-- Footer with Logout -->
-      <div class="border-t border-gray-200 dark:border-gray-700 p-4">
+      <div class="border-t border-gray-200 dark:border-gray-700 p-4 ">
         <button
-          class="flex items-center w-full px-3 py-2 text-sm font-medium text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-md transition-colors duration-150"
+          class="cursor-pointer flex items-center w-full px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors duration-150"
           @click="handleLogout"
         >
           <UIcon name="i-heroicons-arrow-left-on-rectangle" class="h-5 w-5 mr-3" />
@@ -70,7 +70,7 @@
 
         <!-- Right side -->
         <div class="ml-auto">
-          <button class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
+          <button class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer">
             <svg class="h-6 w-6 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
