@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Nuxt Minimal Starter
 
 Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
@@ -5,6 +6,15 @@ Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduct
 ## Setup
 
 Make sure to install dependencies:
+=======
+# Nuxt UI Starter
+
+Look at [Nuxt docs](https://nuxt.com/docs/getting-started/introduction) and [Nuxt UI docs](https://ui.nuxt.com) to learn more.
+
+## Setup
+
+Make sure to install the dependencies:
+>>>>>>> 3b660da56cc688813fe05bd3fb2a84b10cffbbc4
 
 ```bash
 # npm
@@ -29,7 +39,11 @@ Start the development server on `http://localhost:3000`:
 npm run dev
 
 # pnpm
+<<<<<<< HEAD
 pnpm dev
+=======
+pnpm run dev
+>>>>>>> 3b660da56cc688813fe05bd3fb2a84b10cffbbc4
 
 # yarn
 yarn dev
@@ -47,7 +61,11 @@ Build the application for production:
 npm run build
 
 # pnpm
+<<<<<<< HEAD
 pnpm build
+=======
+pnpm run build
+>>>>>>> 3b660da56cc688813fe05bd3fb2a84b10cffbbc4
 
 # yarn
 yarn build
@@ -63,7 +81,11 @@ Locally preview production build:
 npm run preview
 
 # pnpm
+<<<<<<< HEAD
 pnpm preview
+=======
+pnpm run preview
+>>>>>>> 3b660da56cc688813fe05bd3fb2a84b10cffbbc4
 
 # yarn
 yarn preview
